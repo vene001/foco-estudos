@@ -19,8 +19,9 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            height: 100vh; /* Mantém o tamanho exato da tela */
             padding: 20px;
-            overflow-x: hidden;
+            overflow: hidden; /* Remove completamente a rolagem no celular */
         }
 
         .container {
@@ -49,7 +50,7 @@
             background-color: #1a1a2e;
         }
 
-        h1 {
+        <h1> {
             font-size: 1.45rem;
             margin-bottom: 12px;
             color: #b388ff;
@@ -191,7 +192,8 @@
 
     <div class="container">
         <div class="profile-container">
-            <img class="profile-img" src="ssstik.io_1777397000901.webp" onerror="this.src='ssstik.io_1777397000901.jpg'; this.onerror=this.src='ssstik.io_1777397000901.jpeg';" alt="Perfil">
+            <!-- Corrigido para carregar a foto roxa que você baixou -->
+            <img class="profile-img" src="ssstik.io_1779973961282.webp" onerror="this.src='ssstik.io_1779973961282.jpg'; this.onerror=function(){this.src='ssstik.io_1779973961282.jpeg';};" alt="Perfil">
         </div>
         
         <h1>Foco nos Estudos</h1>
@@ -226,7 +228,6 @@
         function copiarPix() {
             const chavePix = "0ba45fc9-d53f-4935-b263-22eca573921c";
 
-            // Cria caixinha invisível para garantir cópia em qualquer navegador mobile
             const tempInput = document.createElement("input");
             tempInput.value = chavePix;
             document.body.appendChild(tempInput);
@@ -241,7 +242,6 @@
             
             document.body.removeChild(tempInput);
 
-            // Sobe o balão verde obrigatoriamente
             const toast = document.getElementById('toast');
             toast.classList.add('show');
             
