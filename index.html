@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estudy-site</title>
+    <title>Estude Conosco - Apoie o Projeto</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
@@ -19,121 +19,235 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            height: 100vh; /* Trava a altura na tela */
             padding: 20px;
-            overflow: hidden; /* Remove a rolagem no celular */
+            overflow-x: hidden;
+        }
+
+        .container {
+            background-color: #12121a;
+            border-radius: 24px;
+            padding: 35px 25px;
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            border: 1px solid #222235;
+            contain: content;
         }
 
         .profile-container {
-            background-color: #12121a;
-            border: 1px solid #1f1f2e;
-            border-radius: 20px;
-            padding: 30px 20px;
-            width: 100%;
-            max-width: 350px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            margin-bottom: 22px;
+            display: inline-block;
         }
 
         .profile-img {
-            width: 100px;
-            height: 100px;
+            width: 105px;
+            height: 105px;
             border-radius: 50%;
+            border: 4px solid #8a2be2;
             object-fit: cover;
-            border: 2px solid #8a2be2;
-            margin-bottom: 15px;
+            background-color: #1a1a2e;
         }
 
-        h2 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
+        h1 {
+            font-size: 1.45rem;
+            margin-bottom: 12px;
+            color: #b388ff;
+            letter-spacing: -0.5px;
         }
 
-        .username {
-            font-size: 0.9rem;
-            color: #8a2be2;
+        .motivation-text {
+            font-size: 0.98rem;
+            color: #cdcdde;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .donation-msg {
+            font-size: 1rem;
+            color: #00ffaa;
+            font-weight: 600;
             margin-bottom: 25px;
         }
 
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 10px;
+        .btn-copy {
+            background-color: #8a2be2;
+            color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 1rem;
+            padding: 16px 20px;
+            font-size: 1.05rem;
             font-weight: bold;
+            border-radius: 12px;
             cursor: pointer;
-            transition: background-color 0.2s;
-            text-decoration: none;
-            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
+            transition: transform 0.1s ease, background-color 0.2s ease;
+            will-change: transform;
         }
 
-        .btn-pix {
-            background-color: #00b4d8;
-            color: #ffffff;
+        .btn-copy:active {
+            transform: scale(0.97);
+            background-color: #721cb8;
         }
 
-        .btn-pix:hover {
-            background-color: #0096c7;
+        .discord-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-top: 15px;
         }
 
-        .btn-discord {
+        .discord-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
             background-color: #5865F2;
-            color: #ffffff;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+            will-change: transform;
         }
 
-        .btn-discord:hover {
-            background-color: #4752C4;
+        .discord-link:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.4);
+        }
+
+        .discord-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .discord-icon path {
+            fill: #ffffff;
+        }
+
+        .discord-wrapper .tooltip {
+            visibility: hidden;
+            width: 140px;
+            background-color: #ffffff;
+            color: #121212;
+            text-align: center;
+            border-radius: 8px;
+            padding: 6px 0;
+            position: absolute;
+            z-index: 5;
+            bottom: 130%;
+            left: 50%;
+            margin-left: -70px;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            font-size: 0.85rem;
+            font-weight: bold;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+
+        .discord-wrapper .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #ffffff transparent transparent transparent;
+        }
+
+        .discord-wrapper:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .toast {
             position: fixed;
-            bottom: -50px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #00b4d8;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
+            bottom: 30px;
+            background-color: #00ffaa;
+            color: #09090e;
+            padding: 14px 28px;
+            border-radius: 40px;
             font-weight: bold;
-            transition: bottom 0.3s ease;
-            z-index: 1000;
+            font-size: 0.95rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            pointer-events: none;
+            box-shadow: 0 6px 20px rgba(0, 255, 170, 0.4);
+            z-index: 999;
         }
 
         .toast.show {
-            bottom: 20px;
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
-    <div class="profile-container">
-        <img class="profile-img" src="ssstik.io_1779973961282.webp" alt="Perfil">
-        <h2>Estudy-site</h2>
-        <div class="username">@estudy_site</div>
+    <div class="container">
+        <div class="profile-container">
+            <img class="profile-img" src="ssstik.io_1777397000901.webp" onerror="this.src='ssstik.io_1777397000901.jpg'; this.onerror=this.src='ssstik.io_1777397000901.jpeg';" alt="Perfil">
+        </div>
+        
+        <h1>Foco nos Estudos</h1>
+        
+        <div class="motivation-text">
+            "O sucesso é a soma de pequenos esforços repetidos dia após dia. Cada linha lida, cada problema resolvido te deixa mais perto do seu objectivo. Não pare!"
+        </div>
 
-        <button class="btn btn-pix" onclick="copiarPix()">Copiar Chave Pix para Apoiar</button>
-        <a href="https://discord.gg/SEU_CONVITE" target="_blank" class="btn btn-discord">Entrar no Discord</a>
+        <div class="donation-msg">
+            — Doe quanto você achar melhor. Obrigado.
+        </div>
+        
+        <button class="btn-copy" onclick="copiarPix()">
+            Copiar Chave Pix para Apoiar
+        </button>
+        
+        <br>
+        
+        <div class="discord-wrapper">
+            <span class="tooltip">venha estudar aqui</span>
+            <a href="https://discord.gg/EZJ7e6ZHcs" target="_blank" class="discord-link">
+                <svg class="discord-icon" viewBox="0 0 127.14 96.36">
+                    <path d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.18,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a74.37,74.37,0,0,0,6.72-10.93,68.6,68.6,0,0,1-10.64-5.12c.91-.67,1.81-1.37,2.65-2.1a75.22,75.22,0,0,0,72.74,0c.84.73,1.74,1.43,2.65,2.1a68.52,68.52,0,0,1-10.64,5.12,74.74,74.74,0,0,0,6.72,10.93,105.73,105.73,0,0,0,31.05-18.83C129.83,50.7,123.68,27.83,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z"/>
+                </svg>
+            </a>
+        </div>
     </div>
 
-    <div class="toast" id="toast">Chave Pix copiada!</div>
+    <div class="toast" id="toast">✓ Chave Pix copiada com sucesso!</div>
 
     <script>
         function copiarPix() {
             const chavePix = "0ba45fc9-d53f-4935-b263-22eca573921c";
+
+            // Cria caixinha invisível para garantir cópia em qualquer navegador mobile
+            const tempInput = document.createElement("input");
+            tempInput.value = chavePix;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999);
             
-            navigator.clipboard.writeText(chavePix).then(() => {
-                const toast = document.getElementById('toast');
-                toast.classList.add('show');
-                
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 2000);
-            }).catch(err => {
-                alert("Erro ao copiar.");
-            });
+            try {
+                document.execCommand("copy");
+            } catch (err) {
+                console.log("Erro na cópia.");
+            }
+            
+            document.body.removeChild(tempInput);
+
+            // Sobe o balão verde obrigatoriamente
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
         }
     </script>
 </body>
