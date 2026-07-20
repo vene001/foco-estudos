@@ -19,9 +19,10 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            height: 100vh; /* Mantém o tamanho exato da tela */
+            height: 100vh;
             padding: 20px;
-            overflow: hidden; /* Remove completamente a rolagem no celular */
+            overflow: hidden;
+            overscroll-behavior: none;
         }
 
         .container {
@@ -33,7 +34,6 @@
             text-align: center;
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
             border: 1px solid #222235;
-            contain: content;
         }
 
         .profile-container {
@@ -50,7 +50,7 @@
             background-color: #1a1a2e;
         }
 
-        <h1> {
+        .container h1 {
             font-size: 1.45rem;
             margin-bottom: 12px;
             color: #b388ff;
@@ -84,7 +84,6 @@
             width: 100%;
             box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
             transition: transform 0.1s ease, background-color 0.2s ease;
-            will-change: transform;
         }
 
         .btn-copy:active {
@@ -108,7 +107,6 @@
             border-radius: 50%;
             text-decoration: none;
             transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
-            will-change: transform;
         }
 
         .discord-link:hover {
@@ -145,9 +143,7 @@
             font-weight: bold;
             box-shadow: 0 6px 15px rgba(0,0,0,0.3);
             pointer-events: none;
-            will-change: transform, opacity;
         }
-
         .discord-wrapper .tooltip::after {
             content: "";
             position: absolute;
@@ -180,11 +176,13 @@
             pointer-events: none;
             box-shadow: 0 6px 20px rgba(0, 255, 170, 0.4);
             z-index: 999;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
         }
 
         .toast.show {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(-50%) translateY(0);
         }
     </style>
 </head>
@@ -192,7 +190,6 @@
 
     <div class="container">
         <div class="profile-container">
-            <!-- Corrigido para carregar a foto roxa que você baixou -->
             <img class="profile-img" src="ssstik.io_1779973961282.webp" onerror="this.src='ssstik.io_1779973961282.jpg'; this.onerror=function(){this.src='ssstik.io_1779973961282.jpeg';};" alt="Perfil">
         </div>
         
